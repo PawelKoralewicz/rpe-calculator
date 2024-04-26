@@ -1,0 +1,27 @@
+<ion-app>
+  <ion-menu menuId="main-menu" contentId="main">
+    <ion-header>
+      <ion-toolbar color="primary-tint">
+        <h1 size="large">Menu</h1>
+        <ion-menu-button menu="main-menu" slot="end" icon-only="true">
+          <ion-icon name="close"></ion-icon>
+        </ion-menu-button>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-item *ngFor="let item of menuItems" [href]="item.path" color="light">
+        <ion-icon [name]="item.icon" slot="start"></ion-icon>
+        <ion-label><span>{{ item.label }}</span></ion-label>
+      </ion-item>
+    </ion-content>
+  </ion-menu>
+  <ion-header>
+    <ion-toolbar color="primary-tint">
+      <ion-menu-button menu="main-menu" slot="start"></ion-menu-button>
+      <ion-title id="app-name"> RPE Calc </ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-router-outlet id="main"></ion-router-outlet>
+  </ion-content>
+</ion-app>

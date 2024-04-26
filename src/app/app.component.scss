@@ -1,0 +1,19 @@
+@import url("../assets/fonts/fonts.scss");
+
+ion-toolbar {
+  background: var(--ion-color-primary-tint);
+  color: var(--ion-color-primary-contrast);
+  ion-menu-button {
+    color: var(--ion-color-primary-contrast);
+  }
+}
+
+ion-title#app-name {
+  text-align: center;
+  font-family: "Lobster Two", cursive;
+  font-size: 1.4rem;
+  letter-spacing: 0.1rem;
+  font-weight: 500;
+  filter: drop-shadow(0 0 0.75rem crimson);
+  padding: 0 40px 0 0;
+}

@@ -1,0 +1,88 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "~@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import "~@ionic/angular/css/display.css";
+
+/* Optional CSS utils that can be commented out */
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+
+@import url('assets/fonts/fonts.scss');
+
+*{
+  scroll-behavior: smooth;
+  font-family: 'Cinzel', serif;
+}
+
+div.toolbar-title{
+  display: flex;
+  justify-content: center;
+}
+
+.custom-card {
+  form, section {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  padding: 8px;
+}
+
+h1, h2 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-weight: 500;
+  font-size: 2rem;
+  margin-left: 20px;
+}
+
+h2 {
+  font-size: 1.4rem;
+  text-align: left;
+}
+
+ion-content {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+ion-grid {
+  text-align: center;
+  .table-header{
+      background: rgb(59, 130, 246);
+      border-radius: 4px;
+      border-bottom: none;
+      color: var(--ion-color-primary-contrast);
+  }
+  ion-row {
+      & :nth-child(1) {
+          border-right: 0.5px solid #f8f9fe;
+      }
+      border-bottom: 0.5px solid #f8f9fe;
+  }
+}
+
+ion-segment {
+  ion-segment-button {
+      --indicator-color: rgb(59, 130, 246);
+  }
+}

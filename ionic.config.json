@@ -1,0 +1,7 @@
+{
+  "name": "RPE-calculator",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

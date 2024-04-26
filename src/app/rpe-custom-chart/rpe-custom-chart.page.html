@@ -1,0 +1,92 @@
+<ion-content>
+<ion-toolbar>
+  <ion-select interface="popover" [formControl]="form.controls.method">
+    <ion-select-option *ngFor="let method of methods" [value]="method.value">{{ method.label }}</ion-select-option>
+  </ion-select>
+</ion-toolbar>
+  <form [formGroup]="form" (ngSubmit)="saveData()">
+    <ion-segment [formControl]="form.controls.lift">
+      <ion-segment-button
+        *ngFor="let section of sections"
+        [value]="section.value"
+      >
+        {{ section.value }}
+      </ion-segment-button>
+    </ion-segment>
+    <ion-card color="light" class="custom-card">
+      <section *ngIf="form.value.method === 'firstMethod'">
+        <ion-item color="none">
+          <ion-label><span>1 rep max</span></ion-label>
+          <ion-input
+            type="number"
+            placeholder="eg. 180"
+            [formControl]="form.controls.oneRm"
+          ></ion-input>
+        </ion-item>
+        <ion-item color="none">
+          <ion-label><span>4 rep max</span></ion-label>
+          <ion-input
+            type="number"
+            placeholder="eg. 150"
+            [formControl]="form.controls.fourRm"
+          ></ion-input>
+        </ion-item>
+        <ion-item color="none">
+          <ion-label><span>8 rep max</span></ion-label>
+          <ion-input
+            type="number"
+            placeholder="eg. 130"
+            [formControl]="form.controls.eightRm"
+          ></ion-input>
+        </ion-item>
+      </section>
+      <section *ngIf="form.value.method === 'secondMethod'">
+        <ion-item color="none">
+          <ion-label><span>Reps at 85% of 1RM</span></ion-label>
+          <ion-input
+            type="number"
+            placeholder="eg. 4"
+            [formControl]="secondForm.controls.eightyFivePercent"
+          ></ion-input>
+        </ion-item>
+        <ion-item color="none">
+          <ion-label><span>Reps at 70% of 1RM</span></ion-label>
+          <ion-input
+            type="number"
+            placeholder="eg. 8"
+            [formControl]="secondForm.controls.seventyPercent"
+          ></ion-input>
+        </ion-item>
+      </section>
+      <ion-button expand="block" type="submit">
+        Save
+        <ion-icon slot="end" name="checkmark-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-card>
+  </form>
+  <ion-grid
+    *ngIf="displayedTable.length"
+  >
+  <h2>reps</h2>
+    <ion-segment
+      value="0"
+      [scrollable]="true"
+      (ionChange)="getRepsNumber($event)"
+    >
+      <ion-segment-button
+        *ngFor="let repsNum of displayedTable[0]; let x = index"
+        [value]="x"
+      >
+        {{ x + 1 }}
+      </ion-segment-button>
+    </ion-segment>
+    <ion-row class="table-header">
+      <ion-col>RPE</ion-col>
+      <ion-col>1RM %</ion-col>
+    </ion-row>
+    <ion-row *ngFor="let chart of displayedTable; let i = index">
+      <ion-col>{{ 10 - i/2 }}</ion-col>
+      <ion-col> {{ chart[reps] * 100 | number: '1.0-4'}}</ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

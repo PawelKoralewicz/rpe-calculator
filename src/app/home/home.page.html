@@ -1,0 +1,80 @@
+<ion-content [fullscreen]="true">
+  <ion-header>
+    <h1>RPE Calculator</h1>
+  </ion-header>
+  <ion-card color="light" class="custom-card">
+    <form (ngSubmit)="calculate()">
+      <div>
+        <ion-select
+          placeholder="Select lift"
+          [formControl]="form.controls.lift"
+        >
+          <ion-select-option *ngFor="let lift of lifts" [value]="lift.value"
+            >{{ lift.label }}</ion-select-option
+          >
+        </ion-select>
+      </div>
+      <ion-item color="none">
+        <ion-label position="stacked"><span>weight</span></ion-label>
+        <ion-input
+          type="number"
+          placeholder="eg. 160"
+          [formControl]="form.controls.weight"
+        ></ion-input>
+      </ion-item>
+
+      <ion-item color="none">
+        <ion-label position="stacked"><span>reps</span></ion-label>
+        <ion-input
+          type="number"
+          placeholder="eg. 7"
+          [formControl]="form.controls.reps"
+        ></ion-input>
+      </ion-item>
+
+      <ion-list color="none">
+        <ion-item color="none">
+          <ion-select
+            interface="popover"
+            placeholder="RPE"
+            [formControl]="form.controls.rpe"
+          >
+            <ion-select-option *ngFor="let rpe of rpes" [value]="rpe.id"
+              >{{ rpe.label }}</ion-select-option
+            >
+          </ion-select>
+        </ion-item>
+      </ion-list>
+      <ion-button type="submit" expand="block" [disabled]="!isValid"
+        >Calculate</ion-button
+      >
+    </form>
+  </ion-card>
+  <ion-grid
+    *ngIf="weights.length"
+  >
+  <h2>reps</h2>
+    <ion-segment
+      value="0"
+      [scrollable]="true"
+      (ionChange)="getRepsNumber($event)"
+    >
+      <ion-segment-button
+        *ngFor="let repsNum of calculationChart[0]; let x = index"
+        [value]="x"
+      >
+        {{ x + 1 }}
+      </ion-segment-button>
+    </ion-segment>
+    <ion-row class="table-header">
+      <ion-col>RPE</ion-col>
+      <ion-col class="middle-col">Weight</ion-col>
+      <ion-col>1RM %</ion-col>
+    </ion-row>
+    <ion-row *ngFor="let chart of calculationChart; let i = index">
+      <ion-col>{{ 10 - i/2 }}</ion-col>
+      <ion-col>{{ weights[i][reps] | numberFormatRound: 0.25 }}</ion-col>
+      <ion-col> {{ chart[reps] * 100 | number: '1.0-4'}}</ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
